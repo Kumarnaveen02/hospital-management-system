@@ -1,0 +1,67 @@
+/* Custom app styles */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    transition: all 200ms ease;
+    text-decoration: none;
+}
+
+.sidebar-link:hover {
+    background-color: hsl(var(--accent));
+    color: #0EA5E9;
+}
+
+.sidebar-link.active {
+    background-color: hsl(var(--accent));
+    color: #0EA5E9;
+    font-weight: 600;
+}
+
+.dark .sidebar-link.active {
+    background-color: hsl(220 15% 18%);
+}
+
+.stat-card {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.fade-in {
+    animation: fadeIn 300ms ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #D6D3D1;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #A8A29E;
+}

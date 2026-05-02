@@ -1,0 +1,400 @@
+import React, { createContext, useContext, useState } from 'react';
+
+const LanguageContext = createContext(null);
+
+const translations = {
+  en: {
+    // Common
+    signIn: "Sign In",
+    signOut: "Sign Out",
+    email: "Email",
+    password: "Password",
+    enterCredentials: "Enter your credentials to access the system",
+    welcome: "Welcome",
+    loading: "Loading...",
+    submit: "Submit",
+    save: "Save",
+    cancel: "Cancel",
+    actions: "Actions",
+    status: "Status",
+    date: "Date",
+    id: "ID",
+    name: "Name",
+    phone: "Phone",
+    notes: "Notes",
+    notesOptional: "Notes (optional)",
+    search: "Search",
+    add: "Add",
+    remove: "Remove",
+    view: "View",
+    all: "All",
+    noData: "No data found",
+    signingIn: "Signing in...",
+    patient: "Patient",
+    doctor: "Doctor",
+    selectPatient: "Select patient",
+    selectDoctor: "Select doctor",
+
+    // Hospital
+    hospitalName1: "Kumar",
+    hospitalName2: "Ayurveda",
+    hospitalSubtitle: "Multispecialty Hospital",
+    hospitalLoginDesc: "Multispecialty Hospital - Complete Patient & Inventory Management System",
+
+    // Sidebar
+    dashboard: "Dashboard",
+    patients: "Patients",
+    appointments: "Appointments",
+    doctors: "Vaidy",
+    prescriptions: "Prescriptions",
+    inventory: "Inventory",
+    billing: "Billing",
+
+    // Notifications
+    notifications: "Notifications",
+    markAllRead: "Mark all read",
+    noNotifications: "No notifications",
+
+    // Dashboard
+    dashboardTitle: "Dashboard",
+    dashboardSubtitle: "Overview of your healthcare facility",
+    totalPatients: "Total Patients",
+    todaysAppointments: "Today's Appointments",
+    doctorsCount: "Vaidy",
+    todaysRevenue: "Today's Revenue",
+    lowStockItems: "Low Stock Items",
+    revenueLast30: "Revenue (Last 30 Days)",
+    noRevenueData: "No revenue data yet. Create paid bills to see chart.",
+    noAppointmentsYet: "No appointments yet",
+    scheduled: "Scheduled",
+    completed: "Completed",
+    cancelled: "Cancelled",
+    recentPatients: "Recent Patients",
+    recentAppointments: "Recent Appointments",
+    noPatientsYet: "No patients registered yet",
+
+    // Patients
+    patientsRegistered: "patients registered",
+    addPatient: "Add Patient",
+    registerNewPatient: "Register New Patient",
+    fillPatientDetails: "Fill in the patient details below",
+    fullName: "Full Name",
+    age: "Age",
+    gender: "Gender",
+    address: "Address",
+    bloodGroup: "Blood Group",
+    searchByNamePhoneId: "Search by name, phone, or ID...",
+    male: "Male",
+    female: "Female",
+    other: "Other",
+    noPatientsFound: "No patients found. Click \"Add Patient\" to get started.",
+    registering: "Registering...",
+    registerPatient: "Register Patient",
+    patientRegistered: "Patient registered successfully",
+    backToPatients: "Back to Patients",
+    blood: "Blood",
+
+    // Patient Detail
+    years: "years",
+    noAddress: "No address",
+
+    // Appointments
+    totalAppointments: "total appointments",
+    bookAppointment: "Book Appointment",
+    bookNewAppointment: "Book New Appointment",
+    selectPatientDoctorDate: "Select patient, doctor, date and time slot",
+    pickDate: "Pick a date",
+    timeSlot: "Time Slot",
+    noSlotsAvailable: "No available slots for this date",
+    booking: "Booking...",
+    appointmentBooked: "Appointment booked successfully",
+    noAppointmentsFound: "No appointments found",
+    time: "Time",
+
+    // Doctors
+    doctorsRegistered: "doctors registered",
+    addDoctor: "Add Vaidy",
+    addNewDoctor: "Add New Vaidy",
+    enterDoctorDetails: "Enter doctor credentials and details",
+    specialization: "Specialization",
+    noDoctorsAdded: "No doctors added yet.",
+    contactAdmin: "Contact admin to add doctors.",
+    clickAddDoctor: "Click \"Add Doctor\" to get started.",
+    adding: "Adding...",
+    doctorAdded: "Doctor added successfully",
+
+    // Prescriptions
+    prescriptionsCount: "prescriptions",
+    newPrescription: "New Prescription",
+    createPrescription: "Create Prescription",
+    addDiagnosisMedicines: "Add diagnosis and medicines for the patient",
+    diagnosis: "Diagnosis",
+    medicines: "Medicines",
+    medicineName: "Name",
+    dosage: "Dosage",
+    duration: "Duration",
+    qty: "Qty",
+    noPrescriptionsYet: "No prescriptions yet",
+    creating: "Creating...",
+    prescriptionCreated: "Prescription created",
+
+    // Inventory
+    items: "items",
+    lowStock: "low stock",
+    addItem: "Add Item",
+    addInventoryItem: "Add Inventory Item",
+    addNewMedicine: "Add a new medicine to inventory",
+    medicineName2: "Medicine Name",
+    category: "Category",
+    quantity: "Quantity",
+    unitPrice: "Unit Price",
+    lowStockThreshold: "Low Stock Threshold",
+    supplier: "Supplier",
+    searchMedicines: "Search medicines...",
+    stockIn: "Stock In",
+    stockOut: "Stock Out",
+    updateStock: "Update Stock",
+    adjustStockLevels: "Adjust stock levels",
+    inStock: "In Stock",
+    lowStockBadge: "Low Stock",
+    type: "Type",
+    reason: "Reason",
+    addingToInventory: "Adding...",
+    addToInventory: "Add to Inventory",
+    itemAdded: "Item added to inventory",
+    stockUpdated: "Stock updated",
+    updating: "Updating...",
+    price: "Price",
+    stock: "Stock",
+    medicine: "Medicine",
+
+    // Billing
+    billsGenerated: "bills generated",
+    createBill: "Create Bill",
+    createNewBill: "Create New Bill",
+    addItemsGenBill: "Add items and generate a bill for the patient",
+    billItems: "Bill Items",
+    description: "Description",
+    amount: "Amount",
+    addItem2: "Add Item",
+    total: "Total",
+    thirtyDayRevenue: "30-Day Revenue",
+    dailyRevenue: "Daily Revenue",
+    noPaidBillsYet: "No paid bills yet",
+    paid: "Paid",
+    pending: "Pending",
+    billCreated: "Bill created",
+    noBillsYet: "No bills created yet",
+    revenue: "Revenue",
+    consultation: "Consultation",
+  },
+  hi: {
+    // Common
+    signIn: "साइन इन",
+    signOut: "साइन आउट",
+    email: "ईमेल",
+    password: "पासवर्ड",
+    enterCredentials: "सिस्टम एक्सेस करने के लिए अपनी जानकारी दर्ज करें",
+    welcome: "स्वागत है",
+    loading: "लोड हो रहा है...",
+    submit: "जमा करें",
+    save: "सेव करें",
+    cancel: "रद्द करें",
+    actions: "कार्रवाई",
+    status: "स्थिति",
+    date: "तारीख",
+    id: "आईडी",
+    name: "नाम",
+    phone: "फोन",
+    notes: "नोट्स",
+    notesOptional: "नोट्स (वैकल्पिक)",
+    search: "खोजें",
+    add: "जोड़ें",
+    remove: "हटाएं",
+    view: "देखें",
+    all: "सभी",
+    noData: "कोई डेटा नहीं मिला",
+    signingIn: "साइन इन हो रहा है...",
+    patient: "मरीज़",
+    doctor: "डॉक्टर",
+    selectPatient: "मरीज़ चुनें",
+    selectDoctor: "डॉक्टर चुनें",
+
+    // Hospital
+    hospitalName1: "कुमार",
+    hospitalName2: "आयुर्वेद",
+    hospitalSubtitle: "मल्टीस्पेशलिटी हॉस्पिटल",
+    hospitalLoginDesc: "मल्टीस्पेशलिटी हॉस्पिटल - संपूर्ण मरीज़ एवं इन्वेंटरी प्रबंधन प्रणाली",
+
+    // Sidebar
+    dashboard: "डैशबोर्ड",
+    patients: "मरीज़",
+    appointments: "अपॉइंटमेंट",
+    doctors: "वैद्य",
+    prescriptions: "प्रिस्क्रिप्शन",
+    inventory: "इन्वेंटरी",
+    billing: "बिलिंग",
+
+    // Notifications
+    notifications: "सूचनाएं",
+    markAllRead: "सभी पढ़ी गई",
+    noNotifications: "कोई सूचना नहीं",
+
+    // Dashboard
+    dashboardTitle: "डैशबोर्ड",
+    dashboardSubtitle: "आपके स्वास्थ्य सुविधा का अवलोकन",
+    totalPatients: "कुल मरीज़",
+    todaysAppointments: "आज की अपॉइंटमेंट",
+    doctorsCount: "डॉक्टर",
+    todaysRevenue: "आज की आय",
+    lowStockItems: "कम स्टॉक आइटम",
+    revenueLast30: "आय (पिछले 30 दिन)",
+    noRevenueData: "अभी तक कोई आय डेटा नहीं। चार्ट देखने के लिए भुगतान किए गए बिल बनाएं।",
+    noAppointmentsYet: "अभी तक कोई अपॉइंटमेंट नहीं",
+    scheduled: "निर्धारित",
+    completed: "पूर्ण",
+    cancelled: "रद्द",
+    recentPatients: "हालिया मरीज़",
+    recentAppointments: "हालिया अपॉइंटमेंट",
+    noPatientsYet: "अभी तक कोई मरीज़ पंजीकृत नहीं",
+
+    // Patients
+    patientsRegistered: "मरीज़ पंजीकृत",
+    addPatient: "मरीज़ जोड़ें",
+    registerNewPatient: "नया मरीज़ पंजीकरण",
+    fillPatientDetails: "नीचे मरीज़ का विवरण भरें",
+    fullName: "पूरा नाम",
+    age: "उम्र",
+    gender: "लिंग",
+    address: "पता",
+    bloodGroup: "रक्त समूह",
+    searchByNamePhoneId: "नाम, फोन, या आईडी से खोजें...",
+    male: "पुरुष",
+    female: "महिला",
+    other: "अन्य",
+    noPatientsFound: "कोई मरीज़ नहीं मिला। शुरू करने के लिए \"मरीज़ जोड़ें\" पर क्लिक करें।",
+    registering: "पंजीकरण हो रहा है...",
+    registerPatient: "मरीज़ पंजीकृत करें",
+    patientRegistered: "मरीज़ सफलतापूर्वक पंजीकृत",
+    backToPatients: "मरीज़ों पर वापस",
+    blood: "रक्त",
+
+    // Patient Detail
+    years: "वर्ष",
+    noAddress: "कोई पता नहीं",
+
+    // Appointments
+    totalAppointments: "कुल अपॉइंटमेंट",
+    bookAppointment: "अपॉइंटमेंट बुक करें",
+    bookNewAppointment: "नई अपॉइंटमेंट बुक करें",
+    selectPatientDoctorDate: "मरीज़, डॉक्टर, तारीख और समय चुनें",
+    pickDate: "तारीख चुनें",
+    timeSlot: "समय स्लॉट",
+    noSlotsAvailable: "इस तारीख के लिए कोई स्लॉट उपलब्ध नहीं",
+    booking: "बुक हो रहा है...",
+    appointmentBooked: "अपॉइंटमेंट सफलतापूर्वक बुक हुई",
+    noAppointmentsFound: "कोई अपॉइंटमेंट नहीं मिली",
+    time: "समय",
+
+    // Doctors
+    doctorsRegistered: "डॉक्टर पंजीकृत",
+    addDoctor: "डॉक्टर जोड़ें",
+    addNewDoctor: "नया डॉक्टर जोड़ें",
+    enterDoctorDetails: "डॉक्टर की जानकारी और विवरण दर्ज करें",
+    specialization: "विशेषज्ञता",
+    noDoctorsAdded: "अभी तक कोई डॉक्टर नहीं जोड़ा गया।",
+    contactAdmin: "डॉक्टर जोड़ने के लिए एडमिन से संपर्क करें।",
+    clickAddDoctor: "शुरू करने के लिए \"डॉक्टर जोड़ें\" पर क्लिक करें।",
+    adding: "जोड़ रहा है...",
+    doctorAdded: "डॉक्टर सफलतापूर्वक जोड़ा गया",
+
+    // Prescriptions
+    prescriptionsCount: "प्रिस्क्रिप्शन",
+    newPrescription: "नई प्रिस्क्रिप्शन",
+    createPrescription: "प्रिस्क्रिप्शन बनाएं",
+    addDiagnosisMedicines: "मरीज़ के लिए निदान और दवाइयां जोड़ें",
+    diagnosis: "निदान",
+    medicines: "दवाइयां",
+    medicineName: "नाम",
+    dosage: "खुराक",
+    duration: "अवधि",
+    qty: "मात्रा",
+    noPrescriptionsYet: "अभी तक कोई प्रिस्क्रिप्शन नहीं",
+    creating: "बना रहा है...",
+    prescriptionCreated: "प्रिस्क्रिप्शन बनाई गई",
+
+    // Inventory
+    items: "आइटम",
+    lowStock: "कम स्टॉक",
+    addItem: "आइटम जोड़ें",
+    addInventoryItem: "इन्वेंटरी आइटम जोड़ें",
+    addNewMedicine: "इन्वेंटरी में नई दवा जोड़ें",
+    medicineName2: "दवा का नाम",
+    category: "श्रेणी",
+    quantity: "मात्रा",
+    unitPrice: "इकाई मूल्य",
+    lowStockThreshold: "कम स्टॉक सीमा",
+    supplier: "आपूर्तिकर्ता",
+    searchMedicines: "दवाइयां खोजें...",
+    stockIn: "स्टॉक इन",
+    stockOut: "स्टॉक आउट",
+    updateStock: "स्टॉक अपडेट",
+    adjustStockLevels: "स्टॉक स्तर समायोजित करें",
+    inStock: "स्टॉक में",
+    lowStockBadge: "कम स्टॉक",
+    type: "प्रकार",
+    reason: "कारण",
+    addingToInventory: "जोड़ रहा है...",
+    addToInventory: "इन्वेंटरी में जोड़ें",
+    itemAdded: "आइटम इन्वेंटरी में जोड़ा गया",
+    stockUpdated: "स्टॉक अपडेट हुआ",
+    updating: "अपडेट हो रहा है...",
+    price: "मूल्य",
+    stock: "स्टॉक",
+    medicine: "दवा",
+
+    // Billing
+    billsGenerated: "बिल बनाए गए",
+    createBill: "बिल बनाएं",
+    createNewBill: "नया बिल बनाएं",
+    addItemsGenBill: "आइटम जोड़ें और मरीज़ के लिए बिल बनाएं",
+    billItems: "बिल आइटम",
+    description: "विवरण",
+    amount: "राशि",
+    addItem2: "आइटम जोड़ें",
+    total: "कुल",
+    thirtyDayRevenue: "30-दिन की आय",
+    dailyRevenue: "दैनिक आय",
+    noPaidBillsYet: "अभी तक कोई भुगतान किया गया बिल नहीं",
+    paid: "भुगतान",
+    pending: "बाकी",
+    billCreated: "बिल बनाया गया",
+    noBillsYet: "अभी तक कोई बिल नहीं बनाया",
+    revenue: "आय",
+    consultation: "परामर्श",
+  }
+};
+
+export function LanguageProvider({ children }) {
+  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'en');
+
+  const toggleLanguage = () => {
+    const newLang = lang === 'en' ? 'hi' : 'en';
+    setLang(newLang);
+    localStorage.setItem('lang', newLang);
+  };
+
+  const t = (key) => translations[lang]?.[key] || translations['en']?.[key] || key;
+
+  return (
+    <LanguageContext.Provider value={{ lang, toggleLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const ctx = useContext(LanguageContext);
+  if (!ctx) throw new Error('useLanguage must be used within LanguageProvider');
+  return ctx;
+}

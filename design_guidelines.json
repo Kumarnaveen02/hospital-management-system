@@ -1,0 +1,74 @@
+{
+  "theme": "light",
+  "archetype": "1 (Organic & Earthy)",
+  "rationale": "Patients and healthcare staff need a calm, grounded, and highly readable interface to manage critical data. Warm earthy backgrounds with sky blue accents build trust without feeling like a sterile cold tech app. Flat solid surfaces are used over glassmorphism to ensure data clarity.",
+  "colors": {
+    "background": "#FAFAF9",
+    "surface": "#FFFFFF",
+    "primary": "#0EA5E9",
+    "primary_hover": "#0284C7",
+    "secondary": "#10B981",
+    "text_primary": "#1C1917",
+    "text_secondary": "#57534E",
+    "border": "#E7E5E4",
+    "alert_warning": "#F59E0B",
+    "alert_critical": "#DC2626",
+    "success": "#16A34A"
+  },
+  "typography": {
+    "font_family_headings": "Manrope",
+    "font_family_body": "IBM Plex Sans",
+    "scales": {
+      "h1": "text-3xl font-semibold tracking-tight",
+      "h2": "text-2xl font-medium tracking-tight",
+      "h3": "text-xl font-medium",
+      "h4": "text-lg font-medium",
+      "body": "text-sm text-[#1C1917]",
+      "label": "text-xs font-semibold uppercase tracking-[0.15em] text-[#57534E]"
+    }
+  },
+  "layout_and_spacing": {
+    "strategy": "The Control Room Grid",
+    "gap": "gap-4 md:gap-6",
+    "padding": "p-6",
+    "grid_structure": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4",
+    "border_radius": "rounded-lg",
+    "shadows": "shadow-sm for hover states, otherwise flat with 1px borders"
+  },
+  "component_guidelines": {
+    "sidebar": "Flat solid background (#FFFFFF), right border 1px solid (#E7E5E4). Navigation links with primary hover text and slight background tint.",
+    "cards": "Flat background (#FFFFFF), 1px solid border (#E7E5E4). Hover: translate-y-[-2px] with shadow-md. Content must be padded with p-6.",
+    "buttons": "Primary actions use bg-[#0EA5E9] hover:bg-[#0284C7] text-white. Secondary actions use outline style with warm border.",
+    "tables": "Shadcn Table component. Left-aligned text. Strict grid hierarchy. Use text-sm for data density.",
+    "inputs": "Shadcn input/select with 1px border (#E7E5E4), focus:ring-2 focus:ring-[#0EA5E9].",
+    "badges": "For stock status, use rounded-full px-2 py-1 text-xs. Low stock: bg-red-100 text-red-700. In stock: bg-green-100 text-green-700.",
+    "charts": "Recharts/Shadcn charts. Use primary and secondary colors."
+  },
+  "media_urls": {
+    "doctor_portrait": "https://images.pexels.com/photos/19438566/pexels-photo-19438566.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "hospital_building": "https://images.pexels.com/photos/668300/pexels-photo-668300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "login_background": "https://images.pexels.com/photos/668300/pexels-photo-668300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "icons": {
+    "library": "@phosphor-icons/react",
+    "install_command": "yarn add @phosphor-icons/react",
+    "style": "Duotone or Regular weight for a high-end medical app feel."
+  },
+  "interactions_and_motion": {
+    "hover_states": "All interactive elements MUST explicitly set text color on hover. Use transition-colors duration-200.",
+    "focus_states": "Visible focus ring (2px) using primary color for accessibility.",
+    "loading": "Use subtle skeleton loaders (pulse) matching the background tint, not generic gray."
+  },
+  "accessibility": {
+    "contrast": "Ensure all text meets WCAG AA / APCA standards against warm backgrounds.",
+    "testing_attributes": "All interactive elements MUST include data-testid attribute.",
+    "motion": "Respect prefers-reduced-motion for any transitions."
+  },
+  "forbidden_patterns": [
+    "No teal green or teal blue (#1B93A4)",
+    "No Space Grotesk font",
+    "No Inter, Roboto, or Open Sans for headings",
+    "No pure black (#000000) or pure gray",
+    "No glassmorphism"
+  ]
+}

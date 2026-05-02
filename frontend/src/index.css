@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FAFAF9;
+    color: #1C1917;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Manrope', sans-serif;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@layer base {
+    :root {
+        --background: 40 6% 97%;
+        --foreground: 24 10% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 24 10% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 24 10% 10%;
+        --primary: 199 89% 48%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 160 84% 39%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 30 6% 93%;
+        --muted-foreground: 24 6% 34%;
+        --accent: 30 6% 93%;
+        --accent-foreground: 24 10% 10%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 30 6% 90%;
+        --input: 30 6% 90%;
+        --ring: 199 89% 48%;
+        --chart-1: 199 89% 48%;
+        --chart-2: 160 84% 39%;
+        --chart-3: 38 92% 50%;
+        --chart-4: 0 84% 60%;
+        --chart-5: 24 10% 10%;
+        --radius: 0.5rem;
+    }
+    .dark {
+        --background: 220 15% 10%;
+        --foreground: 30 10% 90%;
+        --card: 220 15% 13%;
+        --card-foreground: 30 10% 90%;
+        --popover: 220 15% 13%;
+        --popover-foreground: 30 10% 90%;
+        --primary: 199 89% 48%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 160 84% 39%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 220 12% 18%;
+        --muted-foreground: 30 6% 60%;
+        --accent: 220 12% 18%;
+        --accent-foreground: 30 10% 90%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 220 12% 20%;
+        --input: 220 12% 20%;
+        --ring: 199 89% 48%;
+        --chart-1: 199 89% 48%;
+        --chart-2: 160 84% 39%;
+        --chart-3: 38 92% 50%;
+        --chart-4: 0 84% 60%;
+        --chart-5: 30 10% 90%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+    }
+}

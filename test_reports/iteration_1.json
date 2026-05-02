@@ -1,0 +1,49 @@
+{
+  "summary": "End-to-end testing of Patient & Inventory Management System completed. Backend: all 23 pytest cases pass (auth, patients, doctors, appointments, prescriptions, inventory, billing, dashboard, notifications, logout). Frontend: login → dashboard redirect, sidebar navigation across all 7 modules, Add Patient modal flow, notification bell, and logout all verified working. JWT cookie auth, low-stock alerts on prescription, double-booking prevention, and inventory deduction on prescription all verified end-to-end.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/auth/login", "issue": "Brute-force counter is keyed by ip:email and on every failed attempt the locked_until is reset to now+15min, so the 15-min window keeps sliding forward indefinitely. Effectively an account stays locked as long as anyone keeps probing it. Consider only setting locked_until once the threshold is crossed."},
+      {"endpoint": "/api/doctors", "issue": "POST silently lower-cases the email but returns 400 only on exact-match duplicate; emails differing only in case are deduplicated correctly but caller is not informed of the canonicalisation."},
+      {"endpoint": "/api/prescriptions", "issue": "Inventory match uses a regex with the user-supplied medicine name without escaping. Names containing regex special chars (e.g. `.`, `(`, `+`) will cause incorrect matches or pymongo errors. Use re.escape()."},
+      {"endpoint": "/api/appointments/{id}/status & /api/billing/{id}/status & /api/notifications/{id}/read", "issue": "These endpoints read the body via `await request.json()` instead of a Pydantic model — no validation, and missing/invalid JSON will throw 500 instead of 422."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "All modals (Register Patient, etc.)", "issues": ["Console warning: 'Missing Description or aria-describedby={undefined} for DialogContent'. Add <DialogDescription> or aria-describedby for shadcn DialogContent for a11y."]},
+      {"screen": "Login page (initial load)", "issues": ["GET /api/auth/me returns 401 on the public login page (expected) but it is logged as a console error. Consider suppressing the noisy log when user is unauthenticated."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_pims_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix sliding-window lockout in /api/auth/login (only set locked_until when count crosses threshold).",
+    "Escape regex when matching medicine_name in /api/prescriptions inventory deduction.",
+    "Convert raw body reads in status update endpoints to Pydantic models for validation and proper 422s.",
+    "Add DialogDescription / aria-describedby to all shadcn Dialogs to clear a11y warnings."
+  ],
+  "critical_code_review_comments": [
+    "server.py is 759 lines — split into routers (auth, patients, doctors, appointments, prescriptions, inventory, billing, dashboard, notifications) for maintainability.",
+    "JWT_SECRET is read from env at request time (good) but no fallback fail-fast at startup; if missing, the first authenticated request 500s instead of failing on boot.",
+    "secure=False on auth cookies — acceptable for preview but should be configurable via env (USE_SECURE_COOKIES) and forced True in production over HTTPS.",
+    "list endpoints (patients, inventory, prescriptions, bills, notifications) have no pagination — to_list(1000) caps results silently. Add limit/offset.",
+    "Doctor list endpoint returns mongo objectId-derived `id` strings while patients/appointments/etc. use UUID-prefixed business ids. This inconsistency forces the frontend to special-case doctor_id which is an ObjectId hex string vs P-/APT-/RX- ids.",
+    "/api/prescriptions does not validate that medicine `quantity` is a positive int — frontend can pass 0 or negative values."
+  ],
+  "updated_files": [
+    "/app/backend/tests/__init__.py (created)",
+    "/app/backend/tests/test_pims_api.py (created)"
+  ],
+  "success_rate": {"backend": "100% (23/23)", "frontend": "100% on tested flows (login, dashboard, nav, add patient, notifications, logout)"},
+  "test_credentials": "admin@example.com / admin123 (verified working; seed_admin updates password on every startup if it differs)",
+  "seed_data_creation": "Tests create TEST_-prefixed patient, doctor, inventory item, appointment, prescription, and bill on the live preview DB. Not auto-cleaned. Main agent may add a teardown fixture if desired.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression suite at /app/backend/tests/test_pims_api.py — run with `pytest /app/backend/tests/ -v`. Key gotcha: emails are lower-cased server-side, assertions must compare to .lower(). Brute-force lockout is per ip:email, use unique random emails for invalid-login tests to avoid 429.",
+  "rca of the issue": "No critical bugs found. Minor backend issues listed above are correctness/robustness concerns, not blocking. Frontend a11y warning is from shadcn Dialog usage — fix by adding DialogDescription."
+}
