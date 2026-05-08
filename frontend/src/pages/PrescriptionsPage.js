@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Textarea } from '../components/ui/textarea';
 import { Plus, Pill } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_BACKEND_URL || 'http://https://hospital-backend-fvr6.onrender.com';
 
 export default function PrescriptionsPage() {
   const { t } = useLanguage();

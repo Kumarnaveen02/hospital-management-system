@@ -9,7 +9,7 @@
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 // import { ArrowLeft, User, Phone, MapPin, Droplets, CalendarDays, FileText, Receipt, Trash2 } from 'lucide-react';
 
-// const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+// const API = process.env.REACT_APP_BACKEND_URL || 'http://https://hospital-backend-fvr6.onrender.com';
 
 // export default function PatientDetailPage() {
 //   const { id } = useParams();
@@ -154,7 +154,7 @@ import {
   Trash2
 } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_BACKEND_URL || 'http://https://hospital-backend-fvr6.onrender.com';
 
 export default function PatientDetailPage() {
   const { id } = useParams();

@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Plus, Stethoscope, Mail, Phone, Award } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
-const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_BACKEND_URL || 'http://https://hospital-backend-fvr6.onrender.com';
 
 const AVATAR_COLORS = [
   { bg: 'bg-sky-100 dark:bg-sky-900/30', text: 'text-sky-700 dark:text-sky-400', border: 'border-sky-200 dark:border-sky-800' },

@@ -15,7 +15,7 @@ patient_ids = [
 ]
 
 # Base URL
-base_url = "http://localhost:8000/api"
+base_url = "http://https://hospital-backend-fvr6.onrender.com/api"
 
 try:
     # Step 1: Login as admin

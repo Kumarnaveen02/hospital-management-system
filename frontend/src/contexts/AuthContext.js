@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AuthContext = createContext(null);
 
-const API = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+const API = process.env.REACT_APP_BACKEND_URL || "http://https://hospital-backend-fvr6.onrender.com";
 
 // Set axios defaults
 axios.defaults.withCredentials = true;

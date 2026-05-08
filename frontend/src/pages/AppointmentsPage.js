@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popove
 import { Plus, CalendarDays, CheckCircle, XCircle } from 'lucide-react';
 import { format } from 'date-fns';
 
-const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_BACKEND_URL || 'http://https://hospital-backend-fvr6.onrender.com';
 
 export default function AppointmentsPage() {
   const { t } = useLanguage();

@@ -6,7 +6,7 @@ import { Badge } from '../components/ui/badge';
 import { Users, CalendarDays, IndianRupee, AlertTriangle, Stethoscope } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
-const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+const API = process.env.REACT_APP_BACKEND_URL || 'http://https://hospital-backend-fvr6.onrender.com';
 const PIE_COLORS = ['#0EA5E9', '#10B981', '#DC2626'];
 
 export default function DashboardPage() {
