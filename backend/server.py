@@ -20,6 +20,8 @@ from cryptography.fernet import Fernet
 from datetime import datetime, timezone, timedelta
 from pydantic import BaseModel
 from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # MongoDB
 # MongoDB
@@ -33,6 +35,17 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[db_name]
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "https://hospital-management-system-beta-inky.vercel.app",
+        "https://hospital-management-system-git-main-naveens-projects-8c4decc5.vercel.app"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 api_router = APIRouter(prefix="/api")
 
 JWT_ALGORITHM = "HS256"
