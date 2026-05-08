@@ -1,0 +1,45 @@
+{
+  "patients": [],
+  "bills": [],
+  "users": [
+    {
+      "email": "admin@example.com",
+      "password_hash": "$2b$12$o8kuV8KGo7Bn1.yTL6ajKeLLPNTvg2u9Cjk0W/S6QeEC1FVhh7R.u",
+      "name": "Admin",
+      "role": "admin",
+      "created_at": "2026-05-08T09:54:15.947350+00:00"
+    },
+    {
+      "email": "vijay.sharma@kumarayurveda.com",
+      "password_hash": "$2b$12$qTB4C1Lb9EJFoIu8zeDRBOplY4fogr77961PddSrGedwFCHTEqrGS",
+      "name": "Vaidy Vijay Sharma",
+      "role": "doctor",
+      "specialization": "General Ayurveda",
+      "phone": "",
+      "created_at": "2026-05-08T09:54:16.529806+00:00"
+    },
+    {
+      "email": "ramavatar.sharma@kumarayurveda.com",
+      "password_hash": "$2b$12$rK5VXoZ7sk86hO1JKX1rL.kp4gtcKU9MtbzQrSVjeNhE5wXR0EjMO",
+      "name": "Vaidy Ramavatar Sharma",
+      "role": "doctor",
+      "specialization": "General Ayurveda",
+      "phone": "",
+      "created_at": "2026-05-08T09:54:16.980494+00:00"
+    },
+    {
+      "email": "jolly.sharma@kumarayurveda.com",
+      "password_hash": "$2b$12$aHUzRvF5t.5srznrTmF9D.yOwDSxzpzhD1lhiECVIaoqt4ucbLKsa",
+      "name": "Vaidy Jolly Sharma",
+      "role": "doctor",
+      "specialization": "Gynecologist - Female Health Specialist",
+      "phone": "",
+      "created_at": "2026-05-08T09:54:17.429975+00:00"
+    }
+  ],
+  "prescriptions": [],
+  "appointments": [],
+  "inventory": [],
+  "login_attempts": [],
+  "audit_logs": []
+}
