@@ -20,10 +20,7 @@ from cryptography.fernet import Fernet
 from datetime import datetime, timezone, timedelta
 from pydantic import BaseModel
 from typing import Optional
-from fastapi.middleware.cors import CORSMiddleware
 
-
-# MongoDB
 # MongoDB
 mongo_url = os.environ.get("MONGO_URL")
 db_name = os.environ.get("DB_NAME", "hospital")
@@ -34,12 +31,24 @@ if not mongo_url:
 client = AsyncIOMotorClient(mongo_url)
 db = client[db_name]
 
+# =========================
+# FASTAPI APP
+# =========================
+
 app = FastAPI()
+
+# =========================
+# CORS FIX
+# =========================
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=[
+        "http://localhost:3000",
+        "https://hospital-management-system-beta-inky.vercel.app",
+        "https://hospital-management-system-git-main-naveens-projects-8c4decc5.vercel.app",
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -48,9 +57,12 @@ api_router = APIRouter(prefix="/api")
 
 JWT_ALGORITHM = "HS256"
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
+logger = logging.getLogger(__name__)
 
 # --- Password & JWT Helpers ---
 def get_jwt_secret():
@@ -827,14 +839,7 @@ async def mark_all_notifications_read(request: Request):
 # ==================== APP SETUP ====================
 app.include_router(api_router)
 
-frontend_url = os.environ.get("FRONTEND_URL", "http://localhost:3000")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[frontend_url, "http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
 
 
 async def create_database_backup() -> None:
