@@ -22,9 +22,15 @@ from pydantic import BaseModel
 from typing import Optional
 
 # MongoDB
-mongo_url = os.environ['MONGO_URL']
+# MongoDB
+mongo_url = os.environ.get("MONGO_URL")
+db_name = os.environ.get("DB_NAME", "hospital")
+
+if not mongo_url:
+    raise ValueError("MONGO_URL environment variable is missing")
+
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+db = client[db_name]
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -37,7 +43,10 @@ logger = logging.getLogger(__name__)
 
 # --- Password & JWT Helpers ---
 def get_jwt_secret():
-    return os.environ["JWT_SECRET"]
+    return os.environ.get(
+        "JWT_SECRET",
+        "my_super_secure_jwt_secret_key_2026_hospital_project"
+    )
 
 
 def hash_password(password: str) -> str:
@@ -917,13 +926,14 @@ async def seed_admin():
 async def shutdown():
     client.close()
 
-
 if __name__ == "__main__":
     import uvicorn
 
+    port = int(os.environ.get("PORT", 8000))
+
     uvicorn.run(
         "server:app",
-        host=os.environ.get("BACKEND_HOST", "0.0.0.0"),
-        port=int(os.environ.get("BACKEND_PORT", "8000")),
-        log_level="info",
+        host="0.0.0.0",
+        port=port,
+        reload=False
     )
