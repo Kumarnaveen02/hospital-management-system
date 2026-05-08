@@ -70,3 +70,6 @@ test_reports/
 dump.rdb
 chainlit.md
 .chainlit
+
+backend/backups/
+memory/
